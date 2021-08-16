@@ -161,5 +161,5 @@ if __name__ == '__main__':
         setup_requires=['cython', 'numpy'],
         install_requires=get_requirements(),
         ext_modules=ext_modules,
-        cmdclass={'build_ext': BuildExtension},
+        cmdclass={'build_ext': BuildExtension.with_options(use_ninja=False)},
         zip_safe=False)
