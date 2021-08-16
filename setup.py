@@ -135,7 +135,8 @@ if __name__ == '__main__':
         ]
     else:
         ext_modules = []
-
+    
+    use_ninja = os.getenv('BASICSR_NINJA')
     write_version_py()
     setup(
         name='basicsr',
@@ -161,5 +162,5 @@ if __name__ == '__main__':
         setup_requires=['cython', 'numpy'],
         install_requires=get_requirements(),
         ext_modules=ext_modules,
-        cmdclass={'build_ext': BuildExtension},
+        cmdclass={'build_ext': BuildExtension.with_options(use_ninja=use_ninja)},
         zip_safe=False)
